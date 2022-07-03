@@ -1,10 +1,9 @@
+import { AuthModule } from 'src/auth/auth.module';
+import { ExceptionsFilter } from './common/filters/exceptions.filter';
+import { APP_FILTER } from '@nestjs/core';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SharedModule } from './shared/shared.module';
-import { APP_FILTER } from '@nestjs/core';
-import { ExceptionsFilter } from './common/filters/exceptions.filter';
-import { AuthModule } from './auth/auth.module';
-import { UserModule } from './user/user.module';
 import { DatabaseModule } from './database/db-module';
 
 @Module({
@@ -20,9 +19,10 @@ import { DatabaseModule } from './database/db-module';
     }),
     DatabaseModule,
     SharedModule,
-    UserModule,
+    // UserModule,
     AuthModule,
   ],
+  controllers: [],
   providers: [
     {
       provide: APP_FILTER,
