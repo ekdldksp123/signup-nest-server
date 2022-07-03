@@ -28,7 +28,7 @@ const setupSeverEnvironment = (app: NestExpressApplication) => {
 
   //http 해더 보안취약점 보호
   app.use(helmet());
-  
+
   //CORS 활성화
   app.use(
     cors({
