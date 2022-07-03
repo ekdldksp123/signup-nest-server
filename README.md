@@ -1,4 +1,4 @@
-# Nest JS api 템플릿
+# signup-nest-server
 
 ## Install
 
@@ -25,23 +25,21 @@ JWT_ISS=https://test-jwt.com
 
 ```bash
 # development
-$ npm run start:dev
+$ yarn start:dev
 
 # production
-$ npm run start:prod
+$ yarn start:prod
 ```
 
 ## Test
 
 ```bash
 # e2e 테스트
-$ npm run test:e2e
+$ yarn test:e2e
 
 # unit 테스트
-$ npm run test:unit
+$ yarn test:unit
 
 # CI/CD 환경에서의 테스트
-$ npm run test:ci
+$ yarn test:ci
 ```
-
-# signup-nest-server
