@@ -1,10 +1,11 @@
-import { AuthModule } from 'src/auth/auth.module';
 import { ExceptionsFilter } from './common/filters/exceptions.filter';
 import { APP_FILTER } from '@nestjs/core';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SharedModule } from './shared/shared.module';
 import { DatabaseModule } from './database/db-module';
+import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { DatabaseModule } from './database/db-module';
     }),
     DatabaseModule,
     SharedModule,
-    // UserModule,
+    UserModule,
     AuthModule,
   ],
   controllers: [],

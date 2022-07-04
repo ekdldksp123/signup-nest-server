@@ -1,10 +1,9 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { SignInReqeustDto } from './dto/sign-in.request.dto';
 import { SignUpReqeustDto } from './dto/sign-up.request.dto';
 import bcrypt from 'bcryptjs';
 import { AuthService } from 'src/auth/auth.service';
 import { TokenDto } from 'src/auth/dto/token.dto';
-import { Model } from 'mongoose';
 
 type CreateUserType = {
   userEmail: string;
@@ -14,8 +13,7 @@ type CreateUserType = {
 @Injectable()
 export class UserService {
   constructor(
-    private authService: AuthService,
-    @Inject('User_MODEL') private readonly userModel: Model<CreateUserType>
+    private authService: AuthService // @Inject('User_MODEL') private readonly userModel: Model<CreateUserType>
   ) {}
 
   async signInUser(reqDto: SignInReqeustDto) {
