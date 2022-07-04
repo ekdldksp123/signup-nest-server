@@ -12,7 +12,7 @@ $ yarn
 # .env.development , .env.production , .env.test 세 파일 생성
 #-> 상황에 따라 아래 환경변수 수정하기
 PORT=3000
-REDIS_URL=redis://default:@localhost:6379
+MONGO_URL=mongodb://mongodb:27017
 JWT_SECRET_ACCESS=access_token
 JWT_SECRET_REFRESH=refresh_token
 JWT_ACCESS_TOKEN_EXPIRE_DATE=30m
