@@ -1,17 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, IsString, Matches } from 'class-validator';
+import { PickType } from '@nestjs/swagger';
+import { SignUpReqeustDto } from './sign-up.request.dto';
 
-export class SignInReqeustDto {
-  @ApiProperty({ description: '회원 이름' })
-  @IsString()
-  userName: string;
-
-  @ApiProperty({ description: '회원 아이디' })
-  @IsEmail()
-  userEmail: string;
-
-  @ApiProperty({ description: '회원 비밀번호' })
-  @IsString()
-  @Matches(/^(?!([A-Za-z]+|[~!@#$%^&*()_+=]+|(?=[0-9]+))$)[A-Za-z\d~!@#$%^&*()_+=]{8,12}$/)
-  userPassword: string;
-}
+export class SignInReqeustDto extends PickType(SignUpReqeustDto, ['userEmail', 'userPassword']) {}
