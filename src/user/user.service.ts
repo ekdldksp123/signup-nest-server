@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import bcrypt from 'bcryptjs';
 import { AuthService } from 'src/auth/auth.service';
 import { TokenDto } from 'src/auth/dto/token.dto';
 import { InjectModel } from '@nestjs/mongoose';
@@ -23,9 +22,10 @@ export class UserService {
 
   async signInUser(reqDto: SignInReqeustDto): Promise<TokenDto> {
     const user = { userIdx: 1 }; //TODO 이메일을 이용해서 몽고디비에서 알맞는 회원정보 가져오기
-    const savedPassword = '123';
-    await bcrypt.compare(reqDto.userPassword, savedPassword);
+    const { userEmail, userPassword } = reqDto;
+    const userData = await this.userModel.find({ userEmail: userEmail, userPassword: userPassword });
 
-    return await this.authService.generateTokens(user.userIdx);
+    if (userData) return await this.authService.generateTokens(user.userIdx);
+    else throw new Error('User not found');
   }
 }
