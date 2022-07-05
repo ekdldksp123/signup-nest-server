@@ -7,11 +7,10 @@ import { TokenDto } from './dto/token.dto';
 export class AuthService {
   constructor(private config: ConfigShared, private jwtService: JwtService) {}
 
-  async generateAccessToken(userIdx: number): Promise<string> {
+  async generateAccessToken(): Promise<string> {
     return await this.jwtService.signAsync(
       {
         iat: Math.ceil(new Date().getTime() / 1000),
-        userIdx,
         tokenType: JWT_TOKEN_TYPE.ACCESS_TOKEN,
       },
       {
@@ -22,11 +21,10 @@ export class AuthService {
     );
   }
 
-  async generateRefreshToken(userIdx: number): Promise<string> {
+  async generateRefreshToken(): Promise<string> {
     return await this.jwtService.signAsync(
       {
         iat: Math.ceil(new Date().getTime() / 1000),
-        userIdx,
         tokenType: JWT_TOKEN_TYPE.REFRESH_TOKEN,
       },
       {
@@ -37,11 +35,8 @@ export class AuthService {
     );
   }
 
-  async generateTokens(userIdx: number): Promise<TokenDto> {
-    const [accessToken, refreshToken] = await Promise.all([
-      this.generateAccessToken(userIdx),
-      this.generateRefreshToken(userIdx),
-    ]);
+  async generateTokens(): Promise<TokenDto> {
+    const [accessToken, refreshToken] = await Promise.all([this.generateAccessToken(), this.generateRefreshToken()]);
     return { accessToken, refreshToken };
   }
 }
