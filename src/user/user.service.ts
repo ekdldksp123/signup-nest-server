@@ -28,4 +28,9 @@ export class UserService {
     if (userData) return await this.authService.generateTokens(user.userIdx);
     else throw new Error('User not found');
   }
+
+  // 전체 유저 삭제하기
+  async removeUsers(): Promise<void> {
+    await this.userModel.remove({});
+  }
 }
