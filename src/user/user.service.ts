@@ -1,3 +1,4 @@
+import { CheckEmailDto } from './dto/check-email.request.dto';
 import { Injectable } from '@nestjs/common';
 import { AuthService } from 'src/auth/auth.service';
 import { TokenDto } from 'src/auth/dto/token.dto';
@@ -13,6 +14,13 @@ export class UserService {
     private authService: AuthService,
     @InjectModel(User.name) private readonly userModel: Model<UserDocument>
   ) {}
+
+  async checkEmail(reqDto: CheckEmailDto): Promise<string> {
+    const userData = await this.userModel.findOne({ userEmail: reqDto.userEmail });
+
+    if (userData) return 'duplicate';
+    else return 'available';
+  }
 
   async signUpUser(reqDto: SignUpReqeustDto): Promise<User> {
     // 요청한 회원가입용 데이터 몽고디비에 저장

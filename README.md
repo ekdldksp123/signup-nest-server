@@ -25,10 +25,10 @@ JWT_ISS=https://test-jwt.com
 
 ```bash
 # development
-$ yarn start:dev
+$ docker compose up dev
 
 # production
-$ yarn start:prod
+$ docker compose up prod
 ```
 
 ## Test

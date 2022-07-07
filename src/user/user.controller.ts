@@ -1,3 +1,4 @@
+import { CheckEmailDto } from './dto/check-email.request.dto';
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { SignInReqeustDto } from './dto/sign-in.request.dto';
@@ -10,6 +11,12 @@ import { UserService } from './user.service';
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
+
+  @ApiOperation({ summary: '이메일 중복 확인' })
+  @Post('check-email')
+  async checkEmail(@Body() reqDto: CheckEmailDto): Promise<string> {
+    return await this.userService.checkEmail(reqDto);
+  }
 
   @ApiOperation({ summary: '회원가입' })
   @Post('sign-up')
