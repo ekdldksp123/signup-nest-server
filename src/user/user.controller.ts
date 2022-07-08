@@ -1,3 +1,4 @@
+import { CheckEmailResultDto } from './../auth/dto/check-email-result.dto';
 import { CheckEmailDto } from './dto/check-email.request.dto';
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
@@ -14,7 +15,7 @@ export class UserController {
 
   @ApiOperation({ summary: '이메일 중복 확인' })
   @Post('check-email')
-  async checkEmail(@Body() reqDto: CheckEmailDto): Promise<string> {
+  async checkEmail(@Body() reqDto: CheckEmailDto): Promise<CheckEmailResultDto> {
     return await this.userService.checkEmail(reqDto);
   }
 

@@ -9,7 +9,7 @@ services:
       dockerfile: ./dockerfile
     command: npm run start:dev
     ports:
-      - 3004:3004
+      - 3001:3001
     networks:
       - nesjs-network
     depends_on:

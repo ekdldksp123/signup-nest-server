@@ -1,3 +1,4 @@
+import { CheckEmailResultDto } from './../auth/dto/check-email-result.dto';
 import { CheckEmailDto } from './dto/check-email.request.dto';
 import { Injectable } from '@nestjs/common';
 import { AuthService } from 'src/auth/auth.service';
@@ -15,11 +16,12 @@ export class UserService {
     @InjectModel(User.name) private readonly userModel: Model<UserDocument>
   ) {}
 
-  async checkEmail(reqDto: CheckEmailDto): Promise<string> {
+  // 중복된 email 인지 확인
+  async checkEmail(reqDto: CheckEmailDto): Promise<CheckEmailResultDto> {
     const userData = await this.userModel.findOne({ userEmail: reqDto.userEmail });
 
-    if (userData) return 'duplicate';
-    else return 'available';
+    if (userData) return { result: 'duplicate' };
+    else return { result: 'available' };
   }
 
   async signUpUser(reqDto: SignUpReqeustDto): Promise<User> {

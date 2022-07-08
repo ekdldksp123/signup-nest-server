@@ -9,37 +9,27 @@ $ yarn
 ## env 파일 세팅
 
 ```bash
-# .env.development , .env.production , .env.test 세 파일 생성
-#-> 상황에 따라 아래 환경변수 수정하기
-PORT=3000
-MONGO_URL=mongodb://mongodb:27017
-JWT_SECRET_ACCESS=access_token
-JWT_SECRET_REFRESH=refresh_token
-JWT_ACCESS_TOKEN_EXPIRE_DATE=30m
-JWT_REFRESH_TOKEN_EXPIRE_DATE=60m
-JWT_ISS=https://test-jwt.com
+# .env.development 파일 생성
+# -> 상황에 따라 아래 환경변수 수정하기
+JWT_SECRET_ACCESS='JWT_SECRET_ACCESS'
+JWT_SECRET_REFRESH='JWT_SECRET_REFRESH'
+JWT_ACCESS_TOKEN_EXPIRE_DATE=10m
+JWT_REFRESH_TOKEN_EXPIRE_DATE=1days
+JWT_ISS='http://dev.localhost.com/'
+PORT=3001
+
+MONGO_USER='root'
+MONGO_PASSWORD='test'
+MONGO_PORT=27017
 
 ```
 
 ## 시작
 
 ```bash
-# development
+# development (*) 이걸로 실행!
 $ docker compose up dev
 
 # production
 $ docker compose up prod
-```
-
-## Test
-
-```bash
-# e2e 테스트
-$ yarn test:e2e
-
-# unit 테스트
-$ yarn test:unit
-
-# CI/CD 환경에서의 테스트
-$ yarn test:ci
 ```
